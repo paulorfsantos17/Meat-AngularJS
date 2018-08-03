@@ -11,16 +11,12 @@ import {CardItem} from '../../restautant-detail/shopping-card/cardItem.model'
 })
 export class OrderItemComponent implements OnInit {
 
- @Input() items : CardItem[]
- @Output() increaseQty = new EventEmitter <CardItem> ()
-@Output() decreaseQty = new EventEmitter <CardItem> ()
- @Output() remove = new EventEmitter <CardItem>  ()
+  @Input() items : CardItem[]
+  @Output() increaseQty = new EventEmitter <CardItem> ()
+  @Output() decreaseQty = new EventEmitter <CardItem> ()
+  @Output() remove = new EventEmitter <CardItem>  ()
 
   constructor(private orderService : OrderService) { }
-
-   ViewOutput (){
-     alert("remove item ="  + this.remove)
-   }
 
   ngOnInit() {
     
@@ -28,6 +24,7 @@ export class OrderItemComponent implements OnInit {
 
   emitIncreaseQty (item:CardItem){
   	this.increaseQty.emit(item)
+    
   }
 
    emitDecreaseQty (item:CardItem){

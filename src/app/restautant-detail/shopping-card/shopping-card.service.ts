@@ -29,15 +29,15 @@ export class ShoppingCardService {
 	}
 
 
-		public increaseQty(item:CardItem){
-			item.quantity = item.quantity + 1
-		}
+ increaseQty(item:CardItem){
+	item.quantity = item.quantity + 1
+}
 
-		public decreaseQty(item:CardItem){
-			item.quantity = item.quantity - 1
-			if(item.quantity === 0 ){
-			this.removeItem(item)
-			}
-		}
+ decreaseQty(item:CardItem){
+	item.quantity = item.quantity - 1
+	if(item.quantity === 0 ){
+		this.removeItem(item)
+	}
+}
 
 }
