@@ -7,7 +7,7 @@
         <section class="invoice">
       
 
-              <form novalidate #form="ngForm">
+              <form novalidate [FormGroup]= "orderForm">
                 <div class="row">
                   <div class="col-xs-12">
                     <h2 class="page-header">
@@ -16,7 +16,31 @@
                   </div>
                 </div>                
 
-                <div class="row invoice-info">
+                  <div  class="row">
+                        <div class="col-xs-12">
+                           <p class="lead">Seus Dados:</p>
+
+                      </div>
+                           <div class="col-sm-6 col-xs-12">
+                          <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Nome">
+                              <input  class="form-control" name="name" placeholder="Nome" ngModel required minlength="5" autocomplete="off">
+                          </mt-input-container>
+
+                        </div> 
+
+                       <div class="col-sm-3 col-xs-6">
+                          <mt-input-container errorMessage="Email Invalido" label="Email">
+                               <input  class="form-control" name="email" placeholder="Email" ngModel required minlength="5" autocomplete="off">
+                          </mt-input-container>
+                      </div>
+                        <div class="col-sm-3 col-xs-6">  
+                         <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Confirmaçao de Email">
+                              <input  class="form-control" name="emailConfirmation" placeholder="Email" ngModel required minlength="5" autocomplete="off">
+                        </mt-input-container>
+
+                  </div>
+                
+                <div class="row">
                   <div class="col-xs-12">
                     <p class="lead">Endereço de Entrega:</p>
                   </div>
@@ -34,7 +58,7 @@
                     </div>
                   <div class="col-sm-3 col-xs-6"> 
                   	<mt-input-container label="Complemento" >
-                  	 <input type="text" class="form-control" name="optional" ngModel placeholder="Complemento" ></mt-input-container>
+                  	 <input type="text" class="form-control" name="optionalAddress" ngModel placeholder="Complemento" ></mt-input-container>
                   
 
                   </div>

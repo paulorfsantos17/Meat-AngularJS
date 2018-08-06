@@ -5,7 +5,7 @@
  		public address: string , 
  		public number :number , 
  		public optional:string ,
- 		public paymentOptional:string,
+ 		public paymentOption:string,
  		public orderItems: OrderItem [] = []){
 
  }
