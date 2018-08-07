@@ -11,9 +11,9 @@ import {OrderSummaryComponent} from './order-summary/order-summary.component'
 
 export const ROUTES: Routes = [
 {path:'', component :HomeComponent},
-{path:'about', component : AboutComponent},
+{path:'about', loadChildren:'./about/about.module#AboutModule'},
 {path:'restaurants', component: RestaurantsComponent},
-{path:'order', component: OrderComponent},
+{path:'order', loadChildren: './order/order.module#OrderModule'},
 {path:'restaurant/:id', component: RestaurantDetailComponent,
 	children: [
 	{path: '' , redirectTo: 'menu', pathMatch:'full'},

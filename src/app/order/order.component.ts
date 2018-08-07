@@ -4,7 +4,8 @@ import{ RadioOption} from '../shared/radio/radio-options.model'
 import {OrderService} from './order.service'
 import {CardItem} from '../restautant-detail/shopping-card/cardItem.model'
 import {Order , OrderItem} from './order.model'
-import {FormGroup , FormBuilder} from '@angular/forms'
+import {FormGroup , FormBuilder , Validators,AbstractControl} from '@angular/forms'
+
 
 
 @Component({
@@ -12,6 +13,10 @@ import {FormGroup , FormBuilder} from '@angular/forms'
   templateUrl: './order.component.html'
 })
 export class OrderComponent implements OnInit {
+
+  emailPath =/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+
+  numberPath =/^[0-9]*$/
 
   orderForm : FormGroup 
 
@@ -35,17 +40,34 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      name: '',
-      email: this.formBuilder.control(''),
-      emailConfimation: this.formBuilder.control(''),
-      address: this.formBuilder.control(''),
-       number: this.formBuilder.control(''),
+      name: this.formBuilder.control('',[Validators.required, Validators.minLength(5)]),
+      email: this.formBuilder.control('',[Validators.required , Validators.pattern(this.emailPath)]),
+      emailConfimation: this.formBuilder.control('',[Validators.required , Validators.pattern(this.emailPath)]),
+      address: this.formBuilder.control('',[Validators.required, Validators.minLength(5)]),
+       number: this.formBuilder.control('',[Validators.required , Validators.pattern(this.numberPath)]),
        optionalAddress: this.formBuilder.control(''),
-       paymentOptions:  this.formBuilder.control(''),
+       paymentOption:  this.formBuilder.control('',[Validators.required]),
+   },{validator:OrderComponent.equalTo})
 
+ }
 
-    })
-  }
+ static equalTo (group:AbstractControl):{[key:string]:boolean}{
+   const email = group.get('email')
+   const emailConfirmation = group.get('emailConfimation')
+
+   if (!email || !emailConfirmation){
+     return undefined
+   }
+
+   if (email.value !== emailConfirmation.value){
+     return {emailNotMatch: true}
+   }
+
+   return undefined
+
+ }
+
+ 
 
   cardItem():CardItem[]{
 
