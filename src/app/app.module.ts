@@ -23,6 +23,8 @@ import {SharedModule} from './shared/shared.module'
 import {OrderModule} from './order/order.module'
 import {CoreModule} from './core/core.module'
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import {CoreModule} from './core/core.module'
 
   ],
   imports: [
+    BrowserAnimationsModule,  
     BrowserModule,
     HttpModule,
     SharedModule.ForRoot(),

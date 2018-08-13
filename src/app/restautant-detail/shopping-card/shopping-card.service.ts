@@ -1,7 +1,15 @@
 import {CardItem} from './cardItem.model'
 import {MenuItem} from '../menu-item/menu-item.model'
+import {NotificationService} from  '../../shared/message/notification.service'
+import {Injectable} from '@angular/core'
+
+@Injectable()
 export class ShoppingCardService {
 	items: CardItem[] = []
+
+	constructor( private notificationService: NotificationService){
+
+	}
 
 	clear(){
 		this.items = [] 
@@ -20,11 +28,13 @@ export class ShoppingCardService {
 		}else{
 			this.items.push(new CardItem(item))
 		}
+		this.notificationService.notify(`Você adicionou o Item: ${item.name}`)
 
 	}
 
 		removeItem(item:CardItem){	
 		this.items.splice(this.items.indexOf(item), 1);
+		this.notificationService.notify(`Você Removeu o Item: ${item.menuItem.name}`)
 
 	}
 
