@@ -41,7 +41,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
-    NotFoundComponent,
+    NotFoundComponent
+
 
   ],
   imports: [
