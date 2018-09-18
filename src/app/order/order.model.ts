@@ -6,6 +6,7 @@
  		public number :number , 
  		public optional:string ,
  		public paymentOption:string,
+ 		public id:string,
  		public orderItems: OrderItem [] = []){
 
  }
