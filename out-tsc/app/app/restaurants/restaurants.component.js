@@ -10,12 +10,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { trigger, state, style, transition, animate } from "@angular/animations";
 import { RestaurantsService } from './restaurants.service';
+import { FormBuilder } from "@angular/forms";
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 var RestaurantsComponent = /** @class */ (function () {
-    function RestaurantsComponent(restaurantsService) {
+    function RestaurantsComponent(restaurantsService, fb) {
         this.restaurantsService = restaurantsService;
+        this.fb = fb;
+        this.searchBarState = "hidden";
     }
+    RestaurantsComponent.prototype.toogleSearch = function () {
+        this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden';
+    };
     RestaurantsComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.searchControl = this.fb.control('');
+        this.searchForm = this.fb.group({
+            searchControl: this.searchControl
+        });
+        this.searchControl.valueChanges
+            .debounceTime(500)
+            .distinctUntilChanged()
+            .switchMap(function (searchTerm) { return _this.restaurantsService.restaurants(searchTerm); })
+            .subscribe(function (restaurants) { return _this.restaurants = restaurants; });
         this.restaurantsService.restaurants()
             .subscribe(function (restaurants) { return _this.restaurants = restaurants; });
     };
@@ -31,13 +50,13 @@ var RestaurantsComponent = /** @class */ (function () {
                     })),
                     state('visible', style({
                         opacity: 1,
-                        "max-height": "0px",
-                        "margin-top": "70px"
+                        "max-height": "70px",
+                        "margin-top": "20px"
                     })), transition('* => *', animate('250ms 0s ease-in-out'))
                 ])
             ]
         }),
-        __metadata("design:paramtypes", [RestaurantsService])
+        __metadata("design:paramtypes", [RestaurantsService, FormBuilder])
     ], RestaurantsComponent);
     return RestaurantsComponent;
 }());

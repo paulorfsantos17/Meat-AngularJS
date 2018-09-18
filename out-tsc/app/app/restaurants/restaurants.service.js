@@ -17,8 +17,8 @@ var RestaurantsService = /** @class */ (function () {
     function RestaurantsService(http) {
         this.http = http;
     }
-    RestaurantsService.prototype.restaurants = function () {
-        return this.http.get(MEAT_API + "/restaurants")
+    RestaurantsService.prototype.restaurants = function (search) {
+        return this.http.get(MEAT_API + "/restaurants", { params: { q: search } })
             .map(function (Response) { return Response.json(); })
             .catch(ErrorHandler.handlerError);
     };
