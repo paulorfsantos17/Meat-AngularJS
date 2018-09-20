@@ -6,6 +6,7 @@ const server: Express = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
+import {handleAuthorization} from "./authz"
 import {handleAuthentication} from "./auth"
 
 // Set default middlewares (logger, static, cors and no-cache)
@@ -17,6 +18,7 @@ server.use(jsonServer.bodyParser)
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.post('/login', handleAuthentication)
+server.use('/orders' ,handleAuthorization)
 
 
 // Use default router

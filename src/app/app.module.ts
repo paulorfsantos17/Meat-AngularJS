@@ -25,7 +25,7 @@ import {CoreModule} from './core/core.module'
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { LoginComponent } from './security/login/login.component';
 
 
 @NgModule({
@@ -41,7 +41,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent
 
 
   ],

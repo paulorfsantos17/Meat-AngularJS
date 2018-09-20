@@ -26,20 +26,20 @@
       </div>
                         
      <div class="col-sm-6 col-xs-12">
-        <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Nome">
+        <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Nome" [showType]="true" >
             <input  class="form-control" formControlName="name" placeholder="Nome"  autocomplete="off">
         </mt-input-container>
 
      </div> 
 
     <div class="col-sm-3 col-xs-6">
-      <mt-input-container errorMessage="Email Invalido" label="Email">
+      <mt-input-container errorMessage="Email Invalido" label="Email" [showType]="true">
           <input  class="form-control" formControlName="email" placeholder="Email"  autocomplete="off">
       </mt-input-container>
     </div>
                      
     <div class="col-sm-3 col-xs-6">  
-       <mt-input-container errorMessage="Email Invalido" label="Confirmaçao de Email">
+       <mt-input-container errorMessage="Email Invalido" label="Confirmaçao de Email" [showType]="true">
           <input  class="form-control" formControlName="emailConfimation" placeholder="Email" autocomplete="off">
        </mt-input-container>
     </div>
@@ -52,19 +52,19 @@
                   </div>
 
                   <div class="col-sm-6 col-xs-12">
-                    <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Endereço">
+                    <mt-input-container errorMessage="Obrigatorio e no minimo 5 caracteres" label="Endereço" [showType]="true">
                     	<input  class="form-control" formControlName="address" placeholder="Endereço"  autocomplete="off">
                     </mt-input-container>
                    </div>
 
                   <div class="col-sm-3 col-xs-6">
-                  	<mt-input-container errorMessage="Obrigatorio  e somente número " label="Número" >
+                  	<mt-input-container errorMessage="Obrigatorio  e somente número " label="Número" [showType]="true">
                   		 <input type="text" class="form-control" formControlName="number"  autocomplete="off" placeholder="Número" pattern="^[0-9]*$">
                   	</mt-input-container>
                   </div>
 
                   <div class="col-sm-3 col-xs-6"> 
-                  	<mt-input-container label="Complemento" >
+                  	<mt-input-container label="Complemento" [showType]="true" >
                   	 <input type="text" class="form-control" formControlName="optionalAddress" ngModel placeholder="Complemento" ></mt-input-container>
                   </div>
                   <!-- /.col -->
