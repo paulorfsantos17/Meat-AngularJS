@@ -12,6 +12,7 @@ import {OrderService} from '../order/order.service';
 import { SnackbarComponent } from './message/snackbar/snackbar.component'
 import {NotificationService} from './message/notification.service'
 import{LoginService} from '../security/login/login.service'
+import{LoggedInGuard} from '../security/loggedin.guard'
 
 
 @NgModule({
@@ -25,6 +26,7 @@ declarations:[
 	imports:[CommonModule,
 			 FormsModule,
 			 ReactiveFormsModule
+			
 	],
 	exports:[
 		InputComponent,
@@ -33,7 +35,8 @@ declarations:[
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
-		SnackbarComponent
+		SnackbarComponent,
+	
 		]
 })
 
@@ -47,7 +50,9 @@ export class SharedModule {
 				 	   ShoppingCardService,
 					   OrderService,
 				 	    NotificationService,
-				 	    LoginService]
+				 	    LoginService,
+				 	     LoggedInGuard
+				 	   ]
 
 
 		 }
