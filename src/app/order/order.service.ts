@@ -2,10 +2,12 @@ import {Injectable} from'@angular/core'
 import { ShoppingCardService} from '../restautant-detail/shopping-card/shopping-card.service'
 import {CardItem} from '../restautant-detail/shopping-card/cardItem.model'
 import {Observable}  from 'rxjs/Observable'
-import {HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders } from '@angular/common/http'
 import {Order} from './order.model'
 import 'rxjs/add/operator/map'
 import {MEAT_API} from '../app.api'
+import {LoginService} from '../security/login/login.service'
+
 
 
 
@@ -13,7 +15,9 @@ import {MEAT_API} from '../app.api'
 export class OrderService {
 
 
-	constructor(private cardService: ShoppingCardService, private http:HttpClient){
+	constructor(private cardService: ShoppingCardService,
+				private http:HttpClient,
+				private loginService : LoginService){
 
 	}
 
@@ -41,8 +45,13 @@ export class OrderService {
 	}
 	
 	checkOrder (order:Order):Observable <string>{
-		
-		return this.http.post<Order>(`${MEAT_API}/orders`, order)
+		let hearders = new HttpHeaders()
+		if(this.loginService.isLoggedIn()){
+
+			hearders = hearders.set('Authorization', `Bearer ${this.loginService.user.acessToken}`)
+
+		}
+		return this.http.post<Order>(`${MEAT_API}/orders`, order, {headers : hearders})
 							.map( order => order.id)
 
 	}
